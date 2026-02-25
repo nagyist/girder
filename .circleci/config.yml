@@ -28,7 +28,7 @@ commands:
           name: Generate python environment checksum file
           command: ./girder/.circleci/generatePyEnvChecksum.sh > girder/py-env-checksum
       - restore_cache:
-          key: venv-py3.9-{{ arch }}-{{ checksum "girder/py-env-checksum" }}-6
+          key: venv-py3.9-{{ arch }}-{{ checksum "girder/py-env-checksum" }}-7
       - run:
           name: Create virtual environment (if necessary)
           command: |
@@ -58,7 +58,7 @@ commands:
       - save_cache:
           paths:
             - girder_env
-          key: venv-py3.9-{{ arch }}-{{ checksum "girder/py-env-checksum" }}-6
+          key: venv-py3.9-{{ arch }}-{{ checksum "girder/py-env-checksum" }}-7
 
 jobs:
   server-lint-test:
