@@ -178,7 +178,6 @@ def asgiBoundServer(db, request):
                 date_header=False,
                 lifespan='off',
                 access_log=False,
-                loop='asyncio',
             )
             asgi_server = uvicorn.Server(config)
             thread = threading.Thread(target=asgi_server.run, daemon=True)
