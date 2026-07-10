@@ -32,13 +32,13 @@ export const outputCoverageReport = async (page: Page) => {
     for (const entry of coverage) {
       let converter;
       if (/plugin_static/.test(entry.url)) {
-        const [plugin, filename] = entry.url.split('/').slice(-2);
-
+        const urlParts = entry.url.split('/');
+        const plugin = urlParts[urlParts.length - 2];
+        const [filename] = urlParts[urlParts.length - 1].split('?');
         const pathsToCheck = [
           `../../plugins/${plugin}/girder_${plugin}/web_client/dist/${filename}`,
           `../../plugins/${plugin}/girder_plugin_${plugin}/web_client/dist/${filename}`
         ];
-
         let path;
         for (const p of pathsToCheck) {
           try {
