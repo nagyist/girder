@@ -5,7 +5,6 @@ import { defineConfig } from 'vite';
 import vue from '@vitejs/plugin-vue';
 import { compileClient } from 'pug';
 import dts from 'vite-plugin-dts';
-import inject from "@rollup/plugin-inject";
 import { viteStaticCopy } from 'vite-plugin-static-copy';
 
 function pugPlugin() {
@@ -72,11 +71,6 @@ if (process.env.BUILD_LIB) {
 export default defineConfig({
   base: './',
   plugins: [
-    inject({
-      $: 'jquery',
-      jQuery: 'jquery',
-      exclude: 'src/**/*.pug',
-    }),
     vue(),
     pugPlugin(),
     inlineFaviconPlugin('public/Girder_Favicon.png', 'image/png'),
@@ -99,5 +93,13 @@ export default defineConfig({
     sourcemap: !process.env.SKIP_SOURCE_MAPS,
     outDir,
     ...buildOpts,
+    rollupOptions: {transform: {
+    inject: {
+      $: 'jquery',
+      jQuery: 'jquery',
+      exclude: 'src/**/*.pug',
+    },
+    },
+    },
   },
 });
