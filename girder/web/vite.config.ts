@@ -92,6 +92,7 @@ export default defineConfig({
   build: {
     sourcemap: !process.env.SKIP_SOURCE_MAPS,
     outDir,
+    chunkSizeWarningLimit: Infinity,
     ...buildOpts,
     rollupOptions: {transform: {
     inject: {
