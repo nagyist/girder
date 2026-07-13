@@ -43,7 +43,7 @@ export const outputCoverageReport = async (page: Page) => {
         const pathsToCheck = [
           `../../plugins/${plugin}/girder_${plugin}/web_client/dist/${filename}`,
           `../../plugins/${plugin}/girder_plugin_${plugin}/web_client/dist/${filename}`,
-+          `../../plugins/${plugin}/${plugin}/web_client/dist/${filename}`
+          `../../plugins/${plugin}/${plugin}/web_client/dist/${filename}`
         ];
         let path;
         for (const p of pathsToCheck) {
