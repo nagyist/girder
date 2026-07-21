@@ -1,8 +1,6 @@
 import fs from "fs";
 import { execSync } from "node:child_process";
 
-import { PlaywrightTestConfig } from "@playwright/test";
-
 const PORT = 5173;
 
 function killStaleServer() {
@@ -40,7 +38,9 @@ function killStaleServer() {
   }
 }
 
-export default async (_config: PlaywrightTestConfig) => {
+// This could take (config: PlaywrightTestConfig) as an argument (imported via
+// import { PlaywrightTestConfig } from "@playwright/test"; )
+export default async () => {
   killStaleServer();
 
   if (fs.existsSync("coverage")) {
